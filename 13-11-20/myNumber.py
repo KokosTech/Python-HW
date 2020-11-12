@@ -32,22 +32,35 @@ def ex3():
 
     print(list)
 
+def is_symmetrical_num(n):
+    return str(n) == str(n)[::-1]
+
 def ex4():
     print("Ex. 4")
+    print(is_symmetrical_num(int(input("Please type a number: "))))
 
 def bonus():
     print("Ex. Bonus")
     string = input("Type a string: ")
     string = string.split()
+    bl = False;
+    string2 = []
 
     for comp in string:
         for chr in comp:
-            if chr in "AEIOUaeiouАЪОУЕИаъоуеи":
-                string.replace(comp, comp.replace(chr, "*"))
-                break
+            if chr in "AEIOUaeiouАЪОУЕИаъоуеи" and bl == False:
+                string2.append('*')
+                bl = True
+            else:
+                string2.append(chr)
+        bl = False
+        string2.append(' ')
 
-    print(" ".join(string))
+    print("".join(string2))
 
 
-
+ex1()
+ex2()
+ex3()
+ex4()
 bonus()
