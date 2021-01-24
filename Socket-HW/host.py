@@ -1,8 +1,9 @@
 import socket
 import threading
-import pyowm
 from datetime import datetime
+
 import aqi
+import pyowm
 
 # Weather
 
