@@ -1,4 +1,4 @@
-:root{
+:root {
     --color-primary: #ffffffc2;
     --color-background: linear-gradient(to right, #ece9e6, #ffffff);
     --color-hover: #fffffff6;
@@ -10,39 +10,39 @@
 }
 
 @font-face {
-  font-family: 'Product Sans Black Regular';
-  font-style: normal;
-  font-weight: normal;
-  src: local('Product Sans Black Regular'), url('../fonts/ProductSans-Black.woff') format('woff');
+    font-family: "Product Sans Black Regular";
+    font-style: normal;
+    font-weight: normal;
+    src: local("Product Sans Black Regular"),
+        url("../fonts/ProductSans-Black.woff") format("woff");
 }
 
-@font-face{
-  font-family: 'Product Sans Regular';
-  font-style: normal;
-  font-weight: normal;
-  src: local('Product Sans Black Regular'), url('../fonts/ProductSans-Regular.woff') format('woff');
-
+@font-face {
+    font-family: "Product Sans Regular";
+    font-style: normal;
+    font-weight: normal;
+    src: local("Product Sans Black Regular"),
+        url("../fonts/ProductSans-Regular.woff") format("woff");
 }
 
-::-webkit-scrollbar{
-  display: none;
+::-webkit-scrollbar {
+    display: none;
 }
 
-::-webkit-scrollbar-thumb{
-  display: none;
+::-webkit-scrollbar-thumb {
+    display: none;
 }
 
-*{
-  font-family: 'Product Sans Black Regular' !important;
+* {
+    font-family: "Product Sans Black Regular" !important;
 }
 
-html{
+html {
     height: 100%;
     background: linear-gradient(#e8f8f6, #faeafa);
-      
 }
 
-body{
+body {
     height: 100%;
     display: flex;
     justify-content: center;
@@ -50,98 +50,106 @@ body{
     margin: 0 0;
 }
 
-.div{
+.div {
     border-radius: 50px;
     background-color: var(--color-primary);
-    box-shadow: 5px 5px 10px var(--color-box-shadow), 
-            -5px -5px 15px var(--color-box-shadow);
+    box-shadow: 5px 5px 10px var(--color-box-shadow),
+        -5px -5px 15px var(--color-box-shadow);
 }
 
 .login-div {
-    width:430px;
+    width: 430px;
     height: 700px;
     padding: 35px;
     border-radius: 40px;
     background: #ecf0f3;
-    box-shadow: 13px 13px 20px #cbced185,
-                -13px -13px 20px #ffffff8e;
+    box-shadow: 13px 13px 20px #cbced185, -13px -13px 20px #ffffff8e;
     display: flex;
     flex-direction: column;
-    justify-content:space-between
-  }
+    justify-content: space-between;
+}
 
 .title {
     text-align: center;
     font-size: 28px;
     letter-spacing: 0.5px;
-  }
-  .sub-title {
+}
+
+.sub-title {
     text-align: center;
     font-size: 15px;
     letter-spacing: 3px;
-  }
+}
 
 .fields {
     width: calc(100% - 20px);
     padding: 10px;
-  }
-  .fields input {
+}
+
+.fields input {
     border: none;
-    outline:none;
+    outline: none;
     background: none;
     font-size: 18px;
     color: #555;
     padding: 20px;
-  }
-  .message, .password {
+}
+
+.message,
+.password {
     margin-bottom: 30px;
     border-radius: 25px;
-    box-shadow: inset 8px 8px 8px #cbced1,
-                inset -8px -8px 8px #ffffff;
+    box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #ffffff;
     border: none;
     outline: none;
     bottom: 25px;
-  }
+}
 
-  .username:hover, .username:focus{
-      border: none;
-      outline: none;
-  }
-
-  .button {
+.username:hover,
+.username:focus {
+    border: none;
     outline: none;
-    border:none;
+}
+
+.button {
+    outline: none;
+    border: none;
     cursor: pointer;
-    width:100%;
+    width: 100%;
     height: 60px;
     border-radius: 30px;
     font-size: 20px;
-    color:#fff;
+    color: #fff;
     text-align: center;
-    box-shadow: 3px 3px 8px #b1b1b1,
-                -3px -3px 8px #ffffff;
+    box-shadow: 3px 3px 8px #b1b1b1, -3px -3px 8px #ffffff;
     transition: 0.5s;
     margin: 10px;
-  }
-  #send-button{
+}
+
+#send-button {
     background: #24cfaa;
-  }
-  #send-button:hover {
-    background:#2fdbb6;
-  }
+}
 
-  #disconnect-button{
-    background:#CF2449;
-  }
-  #disconnect-button:hover{
-    background: #DB2F54;
-  }
+#send-button:hover {
+    background: #2fdbb6;
+}
 
-  .link {
+#disconnect-button {
+    background: #cf2449;
+}
+
+#disconnect-button:hover {
+    background: #db2f54;
+}
+
+.link {
     text-align: center;
-  }
-  .link a {
+}
+
+.link a {
     text-decoration: none;
-    color:#aaa;
+    color: #aaa;
     font-size: 15px;
-  }
+}
+
+/* Messages */

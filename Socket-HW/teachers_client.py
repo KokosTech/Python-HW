@@ -26,7 +26,8 @@ def send(msg, client):
     d_data = pickle.loads(pickle.loads(data))
 
     if msg.lower() == "weather":
-        print(f"The Weather is {d_data[0]['main']} ({d_data[0]['description']})")
+        print(
+            f"The Weather is {d_data[0]['main']} ({d_data[0]['description']})")
     else:
         print(d_data)
 
