@@ -1,5 +1,5 @@
-import socket
 import pickle
+import socket
 
 # ToDo Weather, Time, AirQuality, Non-Existing_Command
 

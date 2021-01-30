@@ -42,15 +42,15 @@ def handle_client(conn, addr):
                 break
 
             print(f"[{addr}] {msg}\n")
-            if msg.lower() == "weather":
+            if "weather" in msg.lower():
                 conn.send(f"The temperature today will be: {Data.temperature('celsius')['temp']}C".encode(FORMAT))
-            elif msg.lower() == "time":
+            elif "time" in msg.lower():
                 now = datetime.now()
                 current_time = now.strftime("%H:%M:%S")
                 conn.send(f"The time right now is: {current_time}".encode(FORMAT))
-            elif msg.lower() == "air quality":
+            elif "air quality" in msg.lower() or "aq" in msg.lower():
                 myaqi = aqi.to_iaqi(aqi.POLLUTANT_PM25, '12', algo=aqi.ALGO_EPA)
-                conn.send(f"The AQI (Air Quality Index) is: {myaqi}IAQI".encode(FORMAT))
+                conn.send(f"The AQI (Air Quality Index) is: {myaqi}AQI".encode(FORMAT))
             else:
                 conn.send(f"The command doesn't exist, please try again!".encode(FORMAT))
     conn.close()
