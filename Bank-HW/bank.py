@@ -162,3 +162,5 @@ class BankAccount:
 # Main
 
 user1 = User("Aleko", "Georgiev", 1000)
+user2 = User("Sasho", "Ivanov", 512)
+user2 = User("Kaloyan", "Doychinov", 1024)
