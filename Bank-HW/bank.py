@@ -4,11 +4,8 @@ import random
 import string
 
 import os
-
-
-
+import argparse
 class User:
-    FILE_NAME = 'bank.json'
 
     # Init Functions
 
@@ -21,6 +18,8 @@ class User:
             self.open_account(start_balance)
         else:                                           # Ако ни е подаден съществуващ акаунт
             self.id = id
+            self.f_name = None                        # (вече съществуващ) акаунт, вместо да отваря нов
+            self.l_name = None
             self.accounts = self.read_accounts()
 
     @staticmethod                                       # Ако не се използва '@staticmethod' - не работи в класа
@@ -33,12 +32,12 @@ class User:
     # File Functions
     @staticmethod           # Същото както коментара на 26ти ред - https://stackabuse.com/pythons-classmethod-and-staticmethod-explained/
     def write_json(data):
-        with open(User.FILE_NAME, "w") as f:
+        with open(FILENAME, "w") as f:
             json.dump(data, f, indent=4)
 
     def read_accounts(self):
-        if os.path.exists(User.FILE_NAME) and not os.stat(User.FILE_NAME).st_size == 0: # Правим тази двойна проверка, 
-            with open(User.FILE_NAME, "r") as f:                                        # защото файлът може да е празен
+        if os.path.exists(FILENAME) and not os.stat(FILENAME).st_size == 0: # Правим тази двойна проверка, 
+            with open(FILENAME, "r") as f:                                        # защото файлът може да е празен
                                                                                         # т.е. няма да има главната структура
                 data = json.load(f)
 
@@ -89,7 +88,7 @@ class User:
 
     def send_money(self, usr_src, acc_src, usr_dst, acc_dst, ammount):
         self.withdraw(acc_src, ammount)
-        '''with open(User.FILE_NAME, "r") as f:
+        '''with open(FILENAME, "r") as f:
             data = json.load(f)
 
             for user in data["Users"]:
@@ -104,8 +103,6 @@ class User:
         pass
 
 class BankAccount:
-    FILE_NAME = 'bank.json'
-
     # Init Function
 
     def __init__(self, parent_id, iban, start_balance, is_new=False):
@@ -117,11 +114,11 @@ class BankAccount:
 
     @staticmethod
     def write_json(data):
-        with open(BankAccount.FILE_NAME, "w") as f:
+        with open(FILENAME, "w") as f:
             json.dump(data, f, indent=4)
     
     def first_write(self, balance):                     # Ако за първи път записваме - правим структура
-        with open(BankAccount.FILE_NAME, "r") as f:
+        with open(FILENAME, "r") as f:
             data = json.load(f)
 
             for user in data["Users"]:
@@ -135,7 +132,7 @@ class BankAccount:
                     return balance
 
     def update_file(self):
-        with open(BankAccount.FILE_NAME, "r") as f:
+        with open(FILENAME, "r") as f:
             data = json.load(f)
 
             for client in data["Users"]:
@@ -160,7 +157,20 @@ class BankAccount:
         self.update_file()
 
 # Main
+parser = argparse.ArgumentParser(prog='Bank',
+                                 usage='%(prog)s [options] path',
+                                 description='Bank Accounts Inc.',
+                                 prefix_chars='--')
+parser.add_argument("--file-name", action="store", dest="filename", help="name of the file containing the accounts")
+parser.add_argument("--id", action="store", dest="id", help="id to login to an existing account")
+options = parser.parse_args()
 
-user1 = User("Aleko", "Georgiev", 1000)
-user2 = User("Sasho", "Ivanov", 512)
-user3 = User("Kaloyan", "Doychinov", 1024)
+if options.filename:
+    FILENAME = options.filename
+else:
+    FILENAME = "bank.json"
+
+if options.id:
+    user1 = User("Aleko", "Georgiev", 1000, options.id)
+else:
+    user2 = User("Sasho", "Ivanov", 512)
