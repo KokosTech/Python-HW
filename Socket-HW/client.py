@@ -1,4 +1,6 @@
 import socket
+import pyttsx3
+engine = pyttsx3.init()
 
 # ToDo Weather, Time, AirQuality, Non-Existing_Command
 
@@ -21,7 +23,10 @@ def send(msg):
     send_length += b' ' * (HEADER - len(send_length))
     client.send(send_length)
     client.send(message)
-    print(client.recv(2048).decode(FORMAT))
+    msg = client.recv(2048).decode(FORMAT)
+    print(msg)
+    engine.say(msg)
+    engine.runAndWait()
 
 
 connection = True
