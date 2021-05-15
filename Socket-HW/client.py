@@ -1,15 +1,17 @@
 import socket
-import pyttsx3
-engine = pyttsx3.init()
+import os
+
+# GUI Libs
+
+import tkinter as tk
 
 # ToDo Weather, Time, AirQuality, Non-Existing_Command
-
 
 HEADER = 64
 PORT = 50007
 FORMAT = "utf-8"
 DISCONNECT_MESSAGE = "dis"
-SERVER = "192.168.0.148"  # Change for different server
+SERVER = "127.0.1.1"  # Change for different server
 ADDR = (SERVER, PORT)
 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -24,18 +26,29 @@ def send(msg):
     client.send(send_length)
     client.send(message)
     msg = client.recv(2048).decode(FORMAT)
-    print(msg)
-    engine.say(msg)
-    engine.runAndWait()
+    msgl = tk.Label(text=msg)
+    msgl.pack()
+
+def discon():
+    send('dis')
+    window.destroy()
 
 
-connection = True
-while True:
-    if connection:
-        msg = input("Enter a message: ")
-        send(msg)
-        if msg == DISCONNECT_MESSAGE:
-            connection = False
-    else:
-        print("DISCONNECTED FROM SERVER")
-        break
+window = tk.Tk()
+window.geometry("500x300")
+window.title("Socket App")
+
+label = tk.Label(text="Socket App")
+label.pack()
+
+get_msg = tk.Entry()
+button = tk.Button(text='Send', command=lambda: send(get_msg.get()))
+dis = tk.Button(text='Disconnect', command=lambda: discon())
+
+get_msg.pack()
+button.pack()
+dis.pack()
+
+entry = tk.Entry()
+submit_button = tk.Button()
+window.mainloop()
